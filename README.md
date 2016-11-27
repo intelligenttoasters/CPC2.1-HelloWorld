@@ -5,3 +5,5 @@ A repository to manage an upload from a PC through a serial port to an Altera Cy
 Part of the CPC2 dongle project.
 
 For information see: http://intelligenttoasters.blog or http://intelligenttoasters.wordpress.com 
+
+If you're just interested in the Altera FPP programming, look at the src/fpga/fpga.c file.
