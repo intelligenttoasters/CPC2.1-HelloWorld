@@ -163,7 +163,7 @@ uint32_t nand_flash_ecc_write_page(const struct nand_flash_ecc *ecc,
 		spare = spare_buffer;
 	}
 
-	memset(spare, 0xFF, NAND_COMMON_MAX_PAGE_SPARE_SIZE);
+	// TODO: Check why library uses this? ::: memset(spare, 0xFF, NAND_COMMON_MAX_PAGE_SPARE_SIZE);
 
 	nand_flash_spare_scheme_write_ecc(nand_flash_model_get_scheme(MODEL(ecc)),
 			spare, hamming_code);

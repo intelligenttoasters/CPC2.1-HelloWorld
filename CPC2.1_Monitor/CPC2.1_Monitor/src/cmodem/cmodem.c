@@ -19,6 +19,7 @@
 
 #ifndef BOARD		// Only include if compiling on PC
 #include "termios.h"
+#include "sys/ioctl.h"
 #include "errno.h"
 #include "time.h"
 #endif
@@ -77,7 +78,10 @@ int depacketize(uint8_t *in, int in_size, uint8_t *out, int out_size)
 	if( (((in_size-2) * 6) & 0xfffff8 ) > (out_size * 8) ) return -1;	
 
 	// Check STX
-	if( *in++ != STX ) return -2;
+//	if( *in++ != STX ) return -2;
+	
+	// Find STX
+	while( (*in++ != STX) && (cntr > 0) ) cntr--;
 	
 	while( cntr > 0 )
 	{
@@ -165,6 +169,11 @@ uint8_t send( char *src, char *dst )
 	// Problem opening?
 	if( dfile <= 0 ) return 2;
 
+	// Set the DTR flag so the device recognizes the port as open
+	int DTR_flag;
+	DTR_flag = TIOCM_DTR;
+	ioctl(dfile,TIOCMBIS,&DTR_flag); //Set DTR pin
+
 	// Get the time
 	time_t t = time(NULL);
 
@@ -199,7 +208,7 @@ uint8_t send( char *src, char *dst )
 		float com = (float)(sendbyte += r) / (float)st.st_size;
 		if( (update_cntr++ & 31) == 0 )
 			remain = ((float)( time(NULL) - t) / com) * (1.0-com);
-		fprintf(stderr,"Complete %3.3f%%, time %ds eta %ds\e[K\r", com * 100.0, (time(NULL) - t), remain);
+		fprintf(stderr,"Complete %3.1f%%, time %ds eta %ds\e[K\r", com * 100.0, (time(NULL) - t), remain);
 
 		// Now repeatedly try to send the data until it's acknowledged
 		uint8_t success = 0;
@@ -245,6 +254,9 @@ uint8_t send( char *src, char *dst )
 	// Send the end-of-medium flag
 	write( dfile, &eom, 1 );
 	
+	// Reset the DTR pin to signal the port is closed
+	ioctl(dfile,TIOCMBIC,&DTR_flag); //Clear DTR pin
+
 	// Close the files
 	close(dfile);
 	close(sfile);
@@ -257,6 +269,7 @@ uint8_t send( char *src, char *dst )
 
 #endif	// PC compile
 
+#ifdef BOARD		// Only include if compiling on the SAM
 /*
  * Receive a file from tty using 256 byte buffers
  * Pass in a buffer for error messages
@@ -267,19 +280,30 @@ int32_t receive(uint8_t **buffer_ptr, char *msg)
 	uint8_t *ptr;
 	static uint8_t binary_buffer[256 + 8];
 	uint8_t i;
+	iram_size_t sz;
+	bool finished = false;
+	
 
 	// Reset the ptr
 	ptr = buffer;
 	
 	// Read a packet up to end-of-text marker
-	i = 0;
-	while( (i != ETX) && (i != EM) ) {
-		while( ( i = getchar())  == 0 ) nop();
-		*ptr++ = i;
+	while(!finished) {
+		// Wait for something to be available
+		while( (sz = udi_cdc_get_nb_received_data()) == 0 ) nop();	
+		// Read the entire buffer for performance reasons
+		udi_cdc_read_buf(ptr,sz);
+		// Check each character
+		for( i=0; i<sz; i++) {
+			// If end-of-medium sent then return 0
+			if( *ptr == EM ) return 0;
+			// If end-of-text/block sent then process the received data
+			if( *ptr++ == ETX ) {
+				finished = true;
+				break;
+			}
+		}
 	}
-	
-	// If end-of-medium sent then return 0
-	if( i == EM ) return 0;
 	
 	// Calculate the received size
 	int size = (void*)ptr - (void*)buffer;
@@ -315,3 +339,4 @@ int32_t receive(uint8_t **buffer_ptr, char *msg)
 	*buffer_ptr = binary_buffer + 4;
 	return size;
 }
+#endif

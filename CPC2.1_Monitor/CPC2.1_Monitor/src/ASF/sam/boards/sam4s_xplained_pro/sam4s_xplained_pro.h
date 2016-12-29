@@ -412,13 +412,13 @@
 //@{
 /** SPI MISO pin definition. */
 #define SPI_MISO_GPIO         (PIO_PA12_IDX)
-#define SPI_MISO_FLAGS       (PIO_PERIPH_A | PIO_PULLUP)
+#define SPI_MISO_FLAGS       (PIO_PERIPH_A | PIO_DEFAULT)
 /** SPI MOSI pin definition. */
 #define SPI_MOSI_GPIO         (PIO_PA13_IDX)
-#define SPI_MOSI_FLAGS       (PIO_PERIPH_A | PIO_PULLUP)
+#define SPI_MOSI_FLAGS       (PIO_PERIPH_A | PIO_DEFAULT)
 /** SPI SPCK pin definition. */
 #define SPI_SPCK_GPIO         (PIO_PA14_IDX)
-#define SPI_SPCK_FLAGS       (PIO_PERIPH_A | PIO_PULLUP)
+#define SPI_SPCK_FLAGS       (PIO_PERIPH_A | PIO_DEFAULT)
 
 /** SPI chip select 0 pin definition. (Only one configuration is possible) */
 #define SPI_NPCS0_GPIO         (PIO_PA11_IDX)

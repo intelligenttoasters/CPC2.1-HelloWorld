@@ -109,6 +109,7 @@
  * \param raw  Pointer to a nand_flash_raw instance.
  * \param column_address  Column address to send.
  */
+NOOPTIMIZE
 static void write_column_address(const struct nand_flash_raw *raw,
 		uint16_t column_address)
 {
@@ -142,6 +143,7 @@ static void write_column_address(const struct nand_flash_raw *raw,
  * \param raw  Pointer to a nand_flash_raw instance.
  * \param row_address  Row address to send.
  */
+NOOPTIMIZE
 static void write_row_address(const struct nand_flash_raw *raw,
 		uint32_t row_address)
 {
@@ -280,6 +282,7 @@ static void read_data(const struct nand_flash_raw *raw,
  *
  * \return 0 if successful; otherwise return the error code.
  */
+NOOPTIMIZE
 static uint32_t erase_block(const struct nand_flash_raw *raw, uint16_t block)
 {
 	uint32_t error = 0;
@@ -323,6 +326,7 @@ static uint32_t erase_block(const struct nand_flash_raw *raw, uint16_t block)
  * \note If one of the buffer pointer is 0, the corresponding area is not
  * written.
  */
+NOOPTIMIZE
 static uint32_t write_page(const struct nand_flash_raw *raw,
 		uint16_t block, uint16_t page, void *data, void *spare)
 {
@@ -624,6 +628,7 @@ uint32_t nand_flash_raw_erase_block(const struct nand_flash_raw *raw,
  *
  * \note If one of the buffer pointer is 0, the corresponding area is not read.
  */
+NOOPTIMIZE
 void nand_flash_raw_read_page(const struct nand_flash_raw *raw,
 		uint16_t block, uint16_t page, uint8_t *data, uint8_t *spare)
 {

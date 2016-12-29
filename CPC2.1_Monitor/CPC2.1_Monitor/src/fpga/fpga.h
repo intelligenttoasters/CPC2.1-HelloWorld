@@ -21,6 +21,15 @@ bool toggle_nconfig(void);
 void init_fpga_ports(void);
 
 // Program the FPGA
-void pgm_fpga_from_usb(void);
+void pgm_fpga_from_usb(char *);
+
+// Reset the FPGA ready for programming
+void reset_fpga(void);
+
+// Store a FPGA image in flash
+void store_flash_image(void);
+
+// Load a FPGA image from flash
+void load_flash_image(void);
 
 #endif /* FPGA_H_ */

@@ -30,12 +30,13 @@
       <framework-data>
         <options>
           <option id="common.boards" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="common.components.memory.nand_flash" value="Add" config="" content-id="Atmel.ASF" />
           <option id="common.services.basic.gpio" value="Add" config="" content-id="Atmel.ASF" />
           <option id="common.services.ioport" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="common.services.usb.class.device" value="Add" config="cdc_stdio" content-id="Atmel.ASF" />
           <option id="sam.drivers.pio" value="Add" config="" content-id="Atmel.ASF" />
           <option id="sam.drivers.wdt" value="Add" config="" content-id="Atmel.ASF" />
-          <option id="common.services.usb.class.device" value="Add" config="cdc_stdio" content-id="Atmel.ASF" />
-          <option id="common.components.memory.nand_flash" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="common.services.basic.spi_master" value="Add" config="standard_spi" content-id="Atmel.ASF" />
           <option id="common.applications.user_application.xplained_pro" value="Add" config="" content-id="Atmel.ASF" />
           <option id="common.utils" value="Add" config="" content-id="Atmel.ASF" />
           <option id="sam.utils.cmsis.sam4s.source.template" value="Add" config="" content-id="Atmel.ASF" />
@@ -252,6 +253,12 @@
           <file path="src/ASF/common/utils/stdio/stdio_usb/stdio_usb.h" framework="" version="3.29.0" source="common\utils\stdio\stdio_usb\stdio_usb.h" changed="False" content-id="Atmel.ASF" />
           <file path="src/ASF/sam/drivers/udp/udp_device.c" framework="" version="3.29.0" source="sam\drivers\udp\udp_device.c" changed="False" content-id="Atmel.ASF" />
           <file path="src/ASF/sam/drivers/udp/udp_device.h" framework="" version="3.29.0" source="sam\drivers\udp\udp_device.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/common/services/spi/sam_spi/spi_master.c" framework="" version="3.29.0" source="common\services\spi\sam_spi\spi_master.c" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/common/services/spi/sam_spi/spi_master.h" framework="" version="3.29.0" source="common\services\spi\sam_spi\spi_master.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/common/services/spi/spi_master.h" framework="" version="3.29.0" source="common\services\spi\spi_master.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/Config/conf_spi_master.h" framework="" version="3.29.0" source="common\services\spi\sam_spi\module_config\conf_spi_master.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/spi/spi.c" framework="" version="3.29.0" source="sam\drivers\spi\spi.c" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/spi/spi.h" framework="" version="3.29.0" source="sam\drivers\spi\spi.h" changed="False" content-id="Atmel.ASF" />
         </files>
         <documentation help="http://asf.atmel.com/docs/3.29.0/common.applications.user_application.xplained_pro.sam4s_xplained_pro/html/index.html" />
         <offline-documentation help="" />
@@ -275,6 +282,60 @@
       <ToolName>Atmel-ICE</ToolName>
     </com_atmel_avrdbg_tool_atmelice>
     <avrtoolinterface>JTAG</avrtoolinterface>
+    <PercepioTrace>
+      <TargetOS />
+      <Frequency>120000000</Frequency>
+      <EnableTraceInterrupts>False</EnableTraceInterrupts>
+      <EnableNonintrusive>True</EnableNonintrusive>
+      <EnableTargetOS>False</EnableTargetOS>
+      <EnableApplicationOutput>False</EnableApplicationOutput>
+      <EnableDataWatchPoints>False</EnableDataWatchPoints>
+      <EnablePC>False</EnablePC>
+      <EnablePCPolled>True</EnablePCPolled>
+      <PolledFrequency>1000</PolledFrequency>
+      <EnableMcu>False</EnableMcu>
+      <EnableOsAwareness>False</EnableOsAwareness>
+      <HWApplicationOutput>False</HWApplicationOutput>
+      <HWInterrupt>False</HWInterrupt>
+      <HWIntrusiveDataWatch>True</HWIntrusiveDataWatch>
+      <HWNonintrusiveDataWatch>False</HWNonintrusiveDataWatch>
+      <HWPolledDataWatch>True</HWPolledDataWatch>
+      <HWPolledProgramCounterSampling>True</HWPolledProgramCounterSampling>
+      <HWProfiling>False</HWProfiling>
+      <HWProgramCounterSampling>False</HWProgramCounterSampling>
+      <ApplicationOutput0>String</ApplicationOutput0>
+      <ApplicationOutput1>String</ApplicationOutput1>
+      <ApplicationOutput2>String</ApplicationOutput2>
+      <ApplicationOutput3>String</ApplicationOutput3>
+      <ApplicationOutput4>String</ApplicationOutput4>
+      <ApplicationOutput5>String</ApplicationOutput5>
+      <ApplicationOutput6>String</ApplicationOutput6>
+      <ApplicationOutput7>String</ApplicationOutput7>
+      <ApplicationOutput8>String</ApplicationOutput8>
+      <ApplicationOutput9>String</ApplicationOutput9>
+      <ApplicationOutput10>String</ApplicationOutput10>
+      <ApplicationOutput11>String</ApplicationOutput11>
+      <ApplicationOutput12>String</ApplicationOutput12>
+      <ApplicationOutput13>String</ApplicationOutput13>
+      <ApplicationOutput14>String</ApplicationOutput14>
+      <ApplicationOutput15>String</ApplicationOutput15>
+      <ApplicationOutput16>String</ApplicationOutput16>
+      <ApplicationOutput17>String</ApplicationOutput17>
+      <ApplicationOutput18>String</ApplicationOutput18>
+      <ApplicationOutput19>String</ApplicationOutput19>
+      <ApplicationOutput20>String</ApplicationOutput20>
+      <ApplicationOutput21>String</ApplicationOutput21>
+      <ApplicationOutput22>String</ApplicationOutput22>
+      <ApplicationOutput23>String</ApplicationOutput23>
+      <ApplicationOutput24>String</ApplicationOutput24>
+      <ApplicationOutput25>String</ApplicationOutput25>
+      <ApplicationOutput26>String</ApplicationOutput26>
+      <ApplicationOutput27>String</ApplicationOutput27>
+      <ApplicationOutput28>String</ApplicationOutput28>
+      <ApplicationOutput29>String</ApplicationOutput29>
+      <ApplicationOutput30>String</ApplicationOutput30>
+      <ApplicationOutput31>String</ApplicationOutput31>
+    </PercepioTrace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <ToolchainSettings>
@@ -293,6 +354,7 @@
       <Value>ARM_MATH_CM4=true</Value>
       <Value>printf=iprintf</Value>
       <Value>UDD_ENABLE</Value>
+      <Value>NOOPTIMIZE=__attribute__((optimize(0)))</Value>
     </ListValues>
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.DefaultIncludePath>False</armgcc.compiler.directories.DefaultIncludePath>
@@ -331,6 +393,9 @@
       <Value>../src/ASF/common/services/usb/udc</Value>
       <Value>../src/ASF/common/utils/stdio/stdio_usb</Value>
       <Value>../src/ASF/sam/drivers/udp</Value>
+      <Value>../src/ASF/common/services/spi/sam_spi</Value>
+      <Value>../src/ASF/common/services/spi</Value>
+      <Value>../src/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize most (-O3)</armgcc.compiler.optimization.level>
@@ -392,6 +457,9 @@
       <Value>../src/ASF/common/services/usb/udc</Value>
       <Value>../src/ASF/common/utils/stdio/stdio_usb</Value>
       <Value>../src/ASF/sam/drivers/udp</Value>
+      <Value>../src/ASF/common/services/spi/sam_spi</Value>
+      <Value>../src/ASF/common/services/spi</Value>
+      <Value>../src/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
 </ArmGcc>
@@ -414,6 +482,7 @@
       <Value>ARM_MATH_CM4=true</Value>
       <Value>printf=iprintf</Value>
       <Value>UDD_ENABLE</Value>
+      <Value>NOOPTIMIZE=__attribute__((optimize(0)))</Value>
     </ListValues>
   </armgcc.compiler.symbols.DefSymbols>
   <armgcc.compiler.directories.DefaultIncludePath>False</armgcc.compiler.directories.DefaultIncludePath>
@@ -452,6 +521,9 @@
       <Value>../src/ASF/common/services/usb/udc</Value>
       <Value>../src/ASF/common/utils/stdio/stdio_usb</Value>
       <Value>../src/ASF/sam/drivers/udp</Value>
+      <Value>../src/ASF/common/services/spi/sam_spi</Value>
+      <Value>../src/ASF/common/services/spi</Value>
+      <Value>../src/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.OtherFlags>-fdata-sections</armgcc.compiler.optimization.OtherFlags>
@@ -514,6 +586,9 @@
       <Value>../src/ASF/common/services/usb/udc</Value>
       <Value>../src/ASF/common/utils/stdio/stdio_usb</Value>
       <Value>../src/ASF/sam/drivers/udp</Value>
+      <Value>../src/ASF/common/services/spi/sam_spi</Value>
+      <Value>../src/ASF/common/services/spi</Value>
+      <Value>../src/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
   <armgcc.preprocessingassembler.debugging.DebugLevel>Default (-Wa,-g)</armgcc.preprocessingassembler.debugging.DebugLevel>
@@ -542,6 +617,8 @@
     <Folder Include="src\ASF\common\services\ioport\sam\" />
     <Folder Include="src\ASF\common\services\sleepmgr\" />
     <Folder Include="src\ASF\common\services\sleepmgr\sam\" />
+    <Folder Include="src\ASF\common\services\spi\" />
+    <Folder Include="src\ASF\common\services\spi\sam_spi\" />
     <Folder Include="src\ASF\common\services\storage\" />
     <Folder Include="src\ASF\common\services\storage\ctrl_access\" />
     <Folder Include="src\ASF\common\services\storage\ecc_hamming\" />
@@ -563,6 +640,7 @@
     <Folder Include="src\ASF\sam\drivers\matrix\" />
     <Folder Include="src\ASF\sam\drivers\pio\" />
     <Folder Include="src\ASF\sam\drivers\pmc\" />
+    <Folder Include="src\ASF\sam\drivers\spi\" />
     <Folder Include="src\ASF\sam\drivers\udp\" />
     <Folder Include="src\ASF\sam\drivers\wdt\" />
     <Folder Include="src\ASF\sam\utils\" />
@@ -592,12 +670,24 @@
     <Folder Include="src\config\" />
     <Folder Include="src\cmodem" />
     <Folder Include="src\fpga" />
+    <Folder Include="src\flash" />
+    <Folder Include="src\menu" />
+    <Folder Include="src\spi" />
     <Folder Include="src\usb" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="src\ASF\common\services\sleepmgr\sam\sleepmgr.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\ASF\common\services\spi\sam_spi\spi_master.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\common\services\spi\sam_spi\spi_master.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\common\services\spi\spi_master.h">
+      <SubType>compile</SubType>
+    </None>
     <Compile Include="src\ASF\common\services\storage\ecc_hamming\ecc-sw.c">
       <SubType>compile</SubType>
     </Compile>
@@ -613,10 +703,43 @@
     <Compile Include="src\ASF\common\utils\stdio\stdio_usb\stdio_usb.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\ASF\sam\drivers\spi\spi.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\sam\drivers\spi\spi.h">
+      <SubType>compile</SubType>
+    </None>
     <Compile Include="src\ASF\sam\drivers\udp\udp_device.c">
       <SubType>compile</SubType>
     </Compile>
+    <None Include="src\config\conf_spi_master.h">
+      <SubType>compile</SubType>
+    </None>
+    <Compile Include="src\flash\flash.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\flash\flash.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\main.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\menu\menu.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\menu\menu.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\spi\spi.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\spi\spi.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\usb\usb_handler.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\usb\usb_handler.h">
       <SubType>compile</SubType>
     </Compile>
     <None Include="src\ASF\sam\drivers\udp\udp_device.h">

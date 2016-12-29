@@ -96,8 +96,9 @@
 #define LUN_5                DISABLE  //!< Disable SD/MMC Card over MCI or MCI.
 #endif
 
-#define LUN_6                DISABLE
-#define LUN_7                DISABLE
+#define LUN_6                ENABLE		// MRAM over SPI
+
+#define LUN_7                ENABLE		// Flash and FTL Flash over EBI
 
 #ifdef USB_MASS_STORAGE_ENABLE
 #define LUN_USB              ENABLE   //!< Enable Host Mass-Storage Memory.
@@ -215,6 +216,39 @@
 #define LUN_5_NAME                              "\"SD/MMC Card over MCI Slot 0\""
 //! @}
 
+/*! \name LUN 6 Definitions
+ */
+//! @{
+#define MRAM_SPI_MEM							LUN_6
+#define LUN_ID_MRAM_MEM							LUN_ID_6
+#define LUN_6_INCLUDE                           "spi/spi.h"
+#define Lun_6_test_unit_ready                   spi_test_unit_ready_0
+#define Lun_6_read_capacity                     spi_read_capacity_0
+#define Lun_6_unload                            NULL
+#define Lun_6_wr_protect                        spi_wr_protect_0
+#define Lun_6_removal                           NULL
+#define Lun_6_mem_2_ram                         spi_mem_2_ram_0
+#define Lun_6_ram_2_mem                         spi_ram_2_mem_0
+#define LUN_6_NAME                              "\"MRAM over SPI\""
+//! @}
+
+/*! \name LUN 7 Definitions
+ */
+//! @{
+#define FLASH_MEM								LUN_7
+#define LUN_ID_FLASH_MEM						LUN_ID_7
+#define LUN_7_INCLUDE                           "flash/flash.h"
+#define Lun_7_test_unit_ready                   flash_test_unit_ready
+#define Lun_7_read_capacity                     flash_read_capacity
+#define Lun_7_unload                            NULL
+#define Lun_7_wr_protect                        flash_wr_protect
+#define Lun_7_removal                           NULL
+#define Lun_7_mem_2_ram                         flash_mem_2_ram
+#define Lun_7_ram_2_mem                         flash_ram_2_mem
+#define LUN_7_NAME                              "\"8G FLASH over EBI\""
+//! @}
+
+
 /*! \name USB LUNs Definitions
  */
 //! @{
@@ -276,7 +310,7 @@
 /*! \name Sector size option for different storage media.
  */
 //! @{
-#define SECTOR_SIZE  512
+#define SECTOR_SIZE  128
 //! @}
 
 #endif  // _CONF_ACCESS_H_

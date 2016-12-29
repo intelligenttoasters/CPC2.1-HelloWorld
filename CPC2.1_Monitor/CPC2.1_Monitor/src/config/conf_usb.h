@@ -48,6 +48,7 @@
 #define _CONF_USB_H_
 
 #include "compiler.h"
+#include "usb_protocol_cdc.h"
 
 /**
  * USB Device Configuration
@@ -121,14 +122,17 @@
 #define  UDI_CDC_PORT_NB 1
 
 //! Interface callback definition
-#define  UDI_CDC_ENABLE_EXT(port)          stdio_usb_enable()
-#define  UDI_CDC_DISABLE_EXT(port)         stdio_usb_disable()
+#define  UDI_CDC_ENABLE_EXT(port)			stdio_usb_enable()
+#define  UDI_CDC_DISABLE_EXT(port)			stdio_usb_disable()
 #define  UDI_CDC_RX_NOTIFY(port)
 #define  UDI_CDC_TX_EMPTY_NOTIFY(port)
-#define  UDI_CDC_SET_CODING_EXT(port,cfg)
+#define  UDI_CDC_SET_CODING_EXT(port,cfg) cdc_coding_set(port,cfg)
 #define  UDI_CDC_SET_DTR_EXT(port,set)	cdc_connect_event(port,set)
-extern void cdc_connect_event(U8, bool);
 #define  UDI_CDC_SET_RTS_EXT(port,set)
+
+// External functions
+extern void cdc_coding_set(uint8_t, usb_cdc_line_coding_t *);
+extern void cdc_connect_event(U8, bool);
 
 // #define UDI_CDC_ENABLE_EXT(port) my_callback_cdc_enable()
 // extern bool my_callback_cdc_enable(void);
@@ -150,7 +154,7 @@ extern void cdc_connect_event(U8, bool);
 #define  UDI_CDC_LOW_RATE
 
 //! Default configuration of communication port
-#define  UDI_CDC_DEFAULT_RATE             115200	// Theoretically can go to 512000 baud, (64bytes * 1ms frames) but can't get this to go faster with out restructuring
+#define  UDI_CDC_DEFAULT_RATE             115200	// Only a guideline - not used
 #define  UDI_CDC_DEFAULT_STOPBITS         CDC_STOP_BITS_1
 #define  UDI_CDC_DEFAULT_PARITY           CDC_PAR_NONE
 #define  UDI_CDC_DEFAULT_DATABITS         8

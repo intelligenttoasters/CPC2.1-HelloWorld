@@ -1,9 +1,9 @@
 /**
  * \file
  *
- * \brief NAND Flash configuration.
+ * \brief Spi Master configuration.
  *
- * Copyright (c) 2012-2015 Atmel Corporation. All rights reserved.
+ * Copyright (c) 2011-2015 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -44,32 +44,24 @@
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
 
-#ifndef CONF_NF_H_INCLUDED
-#define CONF_NF_H_INCLUDED
+#ifndef CONF_SPI_MASTER_H_INCLUDED
+#define CONF_SPI_MASTER_H_INCLUDED
 
-/* Number of tries for erasing a block */
-#define CONF_NF_ERASE_NUM_TRY           2
-/* Number of tries for writing a block */
-#define CONF_NF_WRITE_NUM_TRY           2
-/* Number of tries for copying a block */
-#define CONF_NF_COPY_NUM_TRY            2
+/* Possibility to change low-level configurations here */
 
-/* Maximum number of blocks in a device. */
-#define NAND_COMMON_MAX_BLOCK_NUMBER       8192
+//! Default Config Spi Master Delay BCS
+#define CONFIG_SPI_MASTER_DELAY_BCS            0
 
-/* Maximum number of pages in one block. */
-#define NAND_COMMON_MAX_PAGES_PER_BLOCK    64
+//! Default Config Spi Master Bits per Transfer Definition
+#define CONFIG_SPI_MASTER_BITS_PER_TRANSFER    8
 
-/* Maximum size of the data area of one page, in bytes. */
-#define NAND_COMMON_MAX_PAGE_SIZE          2048
+//! Default Config Spi Master Delay BCT
+#define CONFIG_SPI_MASTER_DELAY_BCT            0
 
-/* Maximum size of the spare area of one page, in bytes. */
-#define NAND_COMMON_MAX_PAGE_SPARE_SIZE    64
+//! Default Config Spi Master Delay BS
+#define CONFIG_SPI_MASTER_DELAY_BS             0
 
-/* Maximum number of ecc bytes stored in the spare for one single page. */
-#define NAND_COMMON_MAX_SPARE_ECC_BYTES    24
+//! Default Config Spi Master Dummy Field
+#define CONFIG_SPI_MASTER_DUMMY                0xFF
 
-/* Maximum number of extra free bytes inside the spare area of a page. */
-#define NAND_COMMON_MAX_SPARE_EXTRA_BYTES  40
-
-#endif /* CONF_NF_H_INCLUDED */
+#endif /* CONF_SPI_MASTER_H_INCLUDED */
